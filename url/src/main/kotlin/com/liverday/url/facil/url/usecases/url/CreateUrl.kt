@@ -27,11 +27,11 @@ class CreateUrl(
                 .flatMap { token ->
                     url.token = token
                     urlGateway.existsByToken(token)
-                }
-                .doOnNext { exists ->
-                    if (exists) {
-                        throw TokenAlreadyExistException()
-                    }
+                            .doOnNext { exists ->
+                                if (exists) {
+                                    throw TokenAlreadyExistException()
+                                }
+                            }
                 }
                 .flatMap {
                     urlGateway.save(url)
