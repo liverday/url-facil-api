@@ -1,7 +1,7 @@
 package com.liverday.url.facil.url.usecases.url
 
 import com.liverday.url.facil.url.ports.database.url.UrlDatabaseGateway
-import com.liverday.url.facil.url.ports.usecases.url.create.CreateUrlTokenInputBoundary
+import com.liverday.url.facil.url.ports.usecases.url.CreateUrlTokenInputBoundary
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import kotlin.random.Random

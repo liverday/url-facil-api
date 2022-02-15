@@ -1,7 +1,7 @@
 package com.liverday.url.facil.url.presenters.rest.endpoints
 
-import com.liverday.url.facil.url.ports.usecases.url.create.CreateUrlInputBoundary
-import com.liverday.url.facil.url.ports.usecases.url.create.CreateUrlRequest
+import com.liverday.url.facil.url.ports.usecases.url.CreateUrlInputBoundary
+import com.liverday.url.facil.url.ports.usecases.url.CreateUrlRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

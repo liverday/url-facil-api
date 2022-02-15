@@ -7,6 +7,7 @@ data class Url(
         val id: String? = null,
         val link: String,
         var token: String? = null,
+        var clicks: Int = 0,
         val createdAt: LocalDateTime = LocalDateTime.now(),
-        val updatedAt: LocalDateTime = LocalDateTime.now()
+        var updatedAt: LocalDateTime = LocalDateTime.now()
 )

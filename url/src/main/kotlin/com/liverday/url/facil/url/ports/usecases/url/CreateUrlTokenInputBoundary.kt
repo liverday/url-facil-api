@@ -1,4 +1,4 @@
-package com.liverday.url.facil.url.ports.usecases.url.create
+package com.liverday.url.facil.url.ports.usecases.url
 
 import reactor.core.publisher.Mono
 

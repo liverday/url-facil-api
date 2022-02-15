@@ -11,6 +11,7 @@ class MongoUrlConverter : UrlConverter<MongoUrlData> {
                 entity.id,
                 entity.link,
                 entity.token,
+                entity.clicks,
                 entity.createdAt,
                 entity.updatedAt
         )
@@ -18,9 +19,10 @@ class MongoUrlConverter : UrlConverter<MongoUrlData> {
 
     override fun convertToEntity(domain: Url): MongoUrlData {
         return MongoUrlData(
-                null,
+                domain.id,
                 domain.link,
                 domain.token,
+                domain.clicks,
                 domain.createdAt,
                 domain.updatedAt
         )

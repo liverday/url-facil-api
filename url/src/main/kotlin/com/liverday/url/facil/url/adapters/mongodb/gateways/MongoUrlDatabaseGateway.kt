@@ -7,13 +7,14 @@ import com.liverday.url.facil.url.ports.converters.url.UrlConverter
 import com.liverday.url.facil.url.ports.database.url.UrlDatabaseGateway
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.time.LocalDateTime
 import java.util.*
 
 class MongoUrlDatabaseGateway(
         private val mongoUrlRepository: MongoUrlRepository,
         private val mongoUrlConverter: UrlConverter<MongoUrlData>
 ) : UrlDatabaseGateway {
-    override fun create(url: Url): Mono<Url> {
+    override fun save(url: Url): Mono<Url> {
         return Mono.just(mongoUrlConverter.convertToEntity(url))
                 .flatMap(mongoUrlRepository::save)
                 .map(mongoUrlConverter::convertToDomain)

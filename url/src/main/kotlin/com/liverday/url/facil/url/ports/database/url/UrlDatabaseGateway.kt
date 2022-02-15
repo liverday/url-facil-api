@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono
 import java.util.*
 
 interface UrlDatabaseGateway {
-    fun create(url: Url): Mono<Url>
+    fun save(url: Url): Mono<Url>
     fun findById(id: UUID): Mono<Url>
     fun findUrlByToken(token: String): Mono<Url>
     fun existsByToken(token: String?): Mono<Boolean>
