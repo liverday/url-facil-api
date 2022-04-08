@@ -30,6 +30,7 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("io.github.glytching:junit-extensions:2.5.0")
 }
 
 tasks.withType<KotlinCompile> {
