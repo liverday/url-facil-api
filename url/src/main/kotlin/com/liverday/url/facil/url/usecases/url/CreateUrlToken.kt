@@ -9,7 +9,7 @@ import kotlin.random.Random
 class CreateUrlToken(
         private val urlGateway: UrlDatabaseGateway
 ) : CreateUrlTokenInputBoundary {
-    private val upperCaseSymbols = (64..90) //ASCII Range
+    private val upperCaseSymbols = (65..90) //ASCII Range
             .map { it.toChar() }
             .toCharArray()
 

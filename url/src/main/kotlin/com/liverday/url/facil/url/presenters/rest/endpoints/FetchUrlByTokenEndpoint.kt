@@ -1,6 +1,7 @@
 package com.liverday.url.facil.url.presenters.rest.endpoints
 
 import com.liverday.url.facil.url.ports.usecases.url.FetchUrlByTokenInputBoundary
+import org.springframework.http.CacheControl
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -23,7 +24,8 @@ class FetchUrlByTokenEndpoint(
                 .execute(token)
                 .map { url ->
                     ResponseEntity
-                            .status(HttpStatus.PERMANENT_REDIRECT)
+                            .status(HttpStatus.MOVED_PERMANENTLY)
+                            .header("Cache-Control", "no-cache, no-store")
                             .location(URI.create(url.link))
                             .build<String>()
                 }
