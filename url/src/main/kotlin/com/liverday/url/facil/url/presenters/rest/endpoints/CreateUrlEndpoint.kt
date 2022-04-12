@@ -1,8 +1,10 @@
 package com.liverday.url.facil.url.presenters.rest.endpoints
 
+import com.liverday.url.facil.url.domain.url.entities.Url
 import com.liverday.url.facil.url.ports.usecases.url.CreateUrlInputBoundary
 import com.liverday.url.facil.url.ports.usecases.url.CreateUrlRequest
-import org.springframework.http.ResponseEntity
+import org.springframework.hateoas.EntityModel
+import org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.*
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -20,11 +22,16 @@ class CreateUrlEndpoint(
     @PostMapping
     fun execute(
             @Valid @RequestBody body: CreateUrlRequest
-    ): Mono<ResponseEntity<*>> {
+    ): Mono<EntityModel<Url>> {
+        val fetchUrlByTokenEndpoint = methodOn(FetchUrlByTokenEndpoint::class.java)
         return createUrlInputBoundary.execute(body)
-                .map {
-                    ResponseEntity
-                            .ok(it)
+                .flatMap {
+                    val link = linkTo(fetchUrlByTokenEndpoint.execute(it.token!!)).withSelfRel()
+                    Mono.zip(Mono.just(it), link.toMono())
+                }.map {
+                    val url = it.t1
+                    val link = it.t2
+                    EntityModel.of(url, link)
                 }
     }
 }

@@ -30,7 +30,6 @@ class MongoUrlConverterTest {
 
         Assertions.assertEquals(convertedUrl.id, mongoUrlData.id)
         Assertions.assertEquals(convertedUrl.token, mongoUrlData.token)
-        Assertions.assertEquals(convertedUrl.clicks, mongoUrlData.clicks)
         Assertions.assertEquals(convertedUrl.link, mongoUrlData.link)
         Assertions.assertEquals(convertedUrl.createdAt, mongoUrlData.createdAt)
         Assertions.assertEquals(convertedUrl.updatedAt, mongoUrlData.updatedAt)
@@ -42,7 +41,6 @@ class MongoUrlConverterTest {
 
         Assertions.assertEquals(entityUrl.id, url.id)
         Assertions.assertEquals(entityUrl.token, url.token)
-        Assertions.assertEquals(entityUrl.clicks, url.clicks)
         Assertions.assertEquals(entityUrl.link, url.link)
         Assertions.assertEquals(entityUrl.createdAt, url.createdAt)
         Assertions.assertEquals(entityUrl.updatedAt, url.updatedAt)

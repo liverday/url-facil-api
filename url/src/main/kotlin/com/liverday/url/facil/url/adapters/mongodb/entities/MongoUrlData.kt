@@ -11,7 +11,6 @@ data class MongoUrlData(
     val id: String? = null,
     val link: String,
     val token: String? = null,
-    val clicks: Int,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 )

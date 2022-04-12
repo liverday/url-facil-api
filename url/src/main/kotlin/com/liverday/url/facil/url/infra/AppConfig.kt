@@ -1,16 +1,19 @@
 package com.liverday.url.facil.url.infra
 
+import com.liverday.url.facil.url.adapters.factories.CommonUrlClickFactory
 import com.liverday.url.facil.url.adapters.factories.CommonUrlFactory
+import com.liverday.url.facil.url.ports.database.url.UrlClicksDatabaseGateway
 import com.liverday.url.facil.url.ports.database.url.UrlDatabaseGateway
+import com.liverday.url.facil.url.ports.factories.url.UrlClickFactory
 import com.liverday.url.facil.url.ports.factories.url.UrlFactory
 import com.liverday.url.facil.url.ports.usecases.url.CreateUrlInputBoundary
 import com.liverday.url.facil.url.ports.usecases.url.CreateUrlTokenInputBoundary
 import com.liverday.url.facil.url.ports.usecases.url.FetchUrlByTokenInputBoundary
-import com.liverday.url.facil.url.ports.usecases.url.UpdateUrlClicksInputBoundary
+import com.liverday.url.facil.url.ports.usecases.url.CreateUrlClickInputBoundary
 import com.liverday.url.facil.url.usecases.url.CreateUrl
 import com.liverday.url.facil.url.usecases.url.CreateUrlToken
 import com.liverday.url.facil.url.usecases.url.FetchUrlByToken
-import com.liverday.url.facil.url.usecases.url.UpdateUrlClicks
+import com.liverday.url.facil.url.usecases.url.CreateUrlClick
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -42,6 +45,11 @@ class AppConfig {
     }
 
     @Bean
+    fun urlClickFactory(): UrlClickFactory {
+        return CommonUrlClickFactory()
+    }
+
+    @Bean
     fun createUrlTokenInputBoundary(urlGateway: UrlDatabaseGateway): CreateUrlTokenInputBoundary {
         return CreateUrlToken(urlGateway)
     }
@@ -52,12 +60,12 @@ class AppConfig {
     }
 
     @Bean
-    fun updateUrlClicksInputBoundary(urlGateway: UrlDatabaseGateway): UpdateUrlClicksInputBoundary {
-        return UpdateUrlClicks(urlGateway)
+    fun fetchUrlByTokenInputBoundary(urlGateway: UrlDatabaseGateway, updateUrlClicksInputBoundary: CreateUrlClickInputBoundary): FetchUrlByTokenInputBoundary {
+        return FetchUrlByToken(urlGateway, updateUrlClicksInputBoundary)
     }
 
     @Bean
-    fun fetchUrlByTokenInputBoundary(urlGateway: UrlDatabaseGateway, updateUrlClicksInputBoundary: UpdateUrlClicksInputBoundary): FetchUrlByTokenInputBoundary {
-        return FetchUrlByToken(urlGateway, updateUrlClicksInputBoundary)
+    fun createUrlClickInputBoundary(urlClicksDatabaseGateway: UrlClicksDatabaseGateway, urlClickFactory: UrlClickFactory): CreateUrlClickInputBoundary {
+        return CreateUrlClick(urlClicksDatabaseGateway, urlClickFactory)
     }
 }
