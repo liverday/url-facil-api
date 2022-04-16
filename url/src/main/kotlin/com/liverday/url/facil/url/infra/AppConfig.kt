@@ -2,14 +2,13 @@ package com.liverday.url.facil.url.infra
 
 import com.liverday.url.facil.url.adapters.factories.CommonUrlClickFactory
 import com.liverday.url.facil.url.adapters.factories.CommonUrlFactory
+import com.liverday.url.facil.url.adapters.publishers.SinkUrlPublisher
 import com.liverday.url.facil.url.ports.database.url.UrlClicksDatabaseGateway
 import com.liverday.url.facil.url.ports.database.url.UrlDatabaseGateway
 import com.liverday.url.facil.url.ports.factories.url.UrlClickFactory
 import com.liverday.url.facil.url.ports.factories.url.UrlFactory
-import com.liverday.url.facil.url.ports.usecases.url.CreateUrlInputBoundary
-import com.liverday.url.facil.url.ports.usecases.url.CreateUrlTokenInputBoundary
-import com.liverday.url.facil.url.ports.usecases.url.FetchUrlByTokenInputBoundary
-import com.liverday.url.facil.url.ports.usecases.url.CreateUrlClickInputBoundary
+import com.liverday.url.facil.url.ports.publishers.UrlPublisher
+import com.liverday.url.facil.url.ports.usecases.url.*
 import com.liverday.url.facil.url.usecases.url.CreateUrl
 import com.liverday.url.facil.url.usecases.url.CreateUrlToken
 import com.liverday.url.facil.url.usecases.url.FetchUrlByToken
@@ -19,6 +18,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.server.reactive.ServerHttpRequest
 import org.springframework.web.server.WebFilter
+import reactor.core.publisher.Sinks
 
 @Configuration
 @Suppress("unused")
@@ -60,8 +60,18 @@ class AppConfig {
     }
 
     @Bean
-    fun fetchUrlByTokenInputBoundary(urlGateway: UrlDatabaseGateway, updateUrlClicksInputBoundary: CreateUrlClickInputBoundary): FetchUrlByTokenInputBoundary {
-        return FetchUrlByToken(urlGateway, updateUrlClicksInputBoundary)
+    fun createUrlClickSink(): Sinks.Many<CreateUrlClickRequest> {
+        return Sinks.many().multicast().onBackpressureBuffer(1000)
+    }
+
+    @Bean
+    fun urlPublisher(sink: Sinks.Many<CreateUrlClickRequest>): UrlPublisher {
+        return SinkUrlPublisher(sink)
+    }
+
+    @Bean
+    fun fetchUrlByTokenInputBoundary(urlGateway: UrlDatabaseGateway, urlPublisher: UrlPublisher): FetchUrlByTokenInputBoundary {
+        return FetchUrlByToken(urlGateway, urlPublisher)
     }
 
     @Bean
