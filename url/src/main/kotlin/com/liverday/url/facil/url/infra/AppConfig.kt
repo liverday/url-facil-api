@@ -75,7 +75,11 @@ class AppConfig {
     }
 
     @Bean
-    fun createUrlClickInputBoundary(urlClicksDatabaseGateway: UrlClicksDatabaseGateway, urlClickFactory: UrlClickFactory): CreateUrlClickInputBoundary {
-        return CreateUrlClick(urlClicksDatabaseGateway, urlClickFactory)
+    fun createUrlClickInputBoundary(
+            urlClicksDatabaseGateway: UrlClicksDatabaseGateway,
+            urlClickFactory: UrlClickFactory,
+            sink: Sinks.Many<CreateUrlClickRequest>
+    ): CreateUrlClickInputBoundary {
+        return CreateUrlClick(urlClicksDatabaseGateway, urlClickFactory, sink)
     }
 }

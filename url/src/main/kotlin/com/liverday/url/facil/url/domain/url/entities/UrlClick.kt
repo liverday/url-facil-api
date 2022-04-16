@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 data class UrlClick(
         var id: String? = null,
-        var url: Url? = null,
+        var urlId: String? = null,
         val platform: String,
         val device: String,
         val browser: String,

@@ -11,7 +11,7 @@ class MongoUrlClicksConverter(private val urlConverter: EntityConverter<Url, Mon
     override fun convertToDomain(entity: MongoUrlClickData): UrlClick {
         return UrlClick(
                 entity.id,
-                if (entity.url != null) urlConverter.convertToDomain(entity.url!!) else null,
+                entity.urlId,
                 entity.platform,
                 entity.device,
                 entity.browser,
@@ -24,7 +24,7 @@ class MongoUrlClicksConverter(private val urlConverter: EntityConverter<Url, Mon
     override fun convertToEntity(domain: UrlClick): MongoUrlClickData {
         return MongoUrlClickData(
                 domain.id,
-                if (domain.url != null) urlConverter.convertToEntity(domain.url!!) else null,
+                domain.urlId,
                 domain.platform,
                 domain.device,
                 domain.browser,

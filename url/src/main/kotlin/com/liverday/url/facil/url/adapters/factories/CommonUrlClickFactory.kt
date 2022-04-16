@@ -7,7 +7,7 @@ import com.liverday.url.facil.url.ports.usecases.url.CreateUrlClickRequest
 class CommonUrlClickFactory : UrlClickFactory {
     override fun create(request: CreateUrlClickRequest): UrlClick {
         return UrlClick(
-                url = request.url,
+                urlId = request.url.id,
                 platform = request.platform,
                 device = request.device,
                 browser = request.browser,
