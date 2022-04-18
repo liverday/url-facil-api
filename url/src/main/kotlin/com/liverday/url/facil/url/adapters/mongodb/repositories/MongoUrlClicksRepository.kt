@@ -9,7 +9,6 @@ import reactor.core.publisher.Flux
 import java.util.*
 
 @Repository
-interface MongoUrlClicksRepository : ReactiveCrudRepository<MongoUrlClickData, UUID> {
-    @Query(value = "{ 'url.id': ?0 }")
-    fun findAllByUrlId(@Param("urlId") urlId: String): Flux<MongoUrlClickData>
+interface MongoUrlClicksRepository : ReactiveCrudRepository<MongoUrlClickData, String> {
+    fun findAllByUrlId(urlId: String): Flux<MongoUrlClickData>
 }

@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono
 import java.util.*
 
 @Repository
-interface MongoUrlRepository : ReactiveCrudRepository<MongoUrlData, UUID> {
+interface MongoUrlRepository : ReactiveCrudRepository<MongoUrlData, String> {
     fun findByToken(token: String): Mono<MongoUrlData>
     fun existsByToken(token: String): Mono<Boolean>
 }
