@@ -1,5 +1,7 @@
 package com.liverday.url.facil.url.infra
 
+import com.blueconic.browscap.UserAgentParser
+import com.blueconic.browscap.UserAgentService
 import com.liverday.url.facil.url.adapters.factories.CommonUrlClickFactory
 import com.liverday.url.facil.url.adapters.factories.CommonUrlFactory
 import com.liverday.url.facil.url.adapters.publishers.SinkUrlPublisher
@@ -65,11 +67,6 @@ class AppConfig {
     }
 
     @Bean
-    fun urlPublisher(sink: Sinks.Many<CreateUrlClickRequest>): UrlPublisher {
-        return SinkUrlPublisher(sink)
-    }
-
-    @Bean
     fun fetchUrlByTokenInputBoundary(urlGateway: UrlDatabaseGateway, urlPublisher: UrlPublisher): FetchUrlByTokenInputBoundary {
         return FetchUrlByToken(urlGateway, urlPublisher)
     }
@@ -81,5 +78,15 @@ class AppConfig {
             sink: Sinks.Many<CreateUrlClickRequest>
     ): CreateUrlClickInputBoundary {
         return CreateUrlClick(urlClicksDatabaseGateway, urlClickFactory, sink)
+    }
+
+    @Bean
+    fun userAgentParse(): UserAgentParser {
+        return UserAgentService().loadParser()
+    }
+
+    @Bean
+    fun urlPublisher(sink: Sinks.Many<CreateUrlClickRequest>, userAgentParser: UserAgentParser): UrlPublisher {
+        return SinkUrlPublisher(sink, userAgentParser)
     }
 }

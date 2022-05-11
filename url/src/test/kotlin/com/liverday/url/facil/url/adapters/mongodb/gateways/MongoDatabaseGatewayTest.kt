@@ -51,7 +51,7 @@ class MongoDatabaseGatewayTest {
     }
 
     @Test
-    fun givenAnValidId_ShouldBeAbleToFindUrl(@Random id: UUID, @Random url: Url, @Random mongoUrlData: MongoUrlData) {
+    fun givenAnValidId_ShouldBeAbleToFindUrl(@Random id: String, @Random url: Url, @Random mongoUrlData: MongoUrlData) {
         `when`(mongoUrlConverter.convertToDomain(mongoUrlData)).thenReturn(url)
         `when`(mongoUrlRepository.findById(id)).thenReturn(Mono.just(mongoUrlData))
 
@@ -64,7 +64,7 @@ class MongoDatabaseGatewayTest {
     }
 
     @Test
-    fun givenAInvalidId_ShouldNotBeAbleToFindUrl(@Random id: UUID, @Random mongoUrlData: MongoUrlData) {
+    fun givenAInvalidId_ShouldNotBeAbleToFindUrl(@Random id: String, @Random mongoUrlData: MongoUrlData) {
         `when`(mongoUrlRepository.findById(id)).thenReturn(Mono.empty())
 
         StepVerifier.create(mongoUrlDatabaseGateway.findById(id))

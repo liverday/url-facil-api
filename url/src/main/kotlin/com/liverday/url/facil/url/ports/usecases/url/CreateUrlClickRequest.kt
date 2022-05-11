@@ -7,5 +7,5 @@ data class CreateUrlClickRequest(
         var platform: String,
         var device: String,
         var browser: String,
-        var country: String
+        var ip: String
 )

@@ -11,7 +11,7 @@ class CommonUrlClickFactory : UrlClickFactory {
                 platform = request.platform,
                 device = request.device,
                 browser = request.browser,
-                country = request.country,
+                country = ""
         )
     }
 }

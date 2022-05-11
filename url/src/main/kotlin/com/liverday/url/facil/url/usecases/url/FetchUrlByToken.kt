@@ -13,11 +13,11 @@ class FetchUrlByToken(
         private val urlDatabaseGateway: UrlDatabaseGateway,
         private val urlPublisher: UrlPublisher
 ) : FetchUrlByTokenInputBoundary {
-    override fun execute(token: String): Mono<Url> {
+    override fun execute(token: String, metadata: UrlPublishMetadata): Mono<Url> {
         return urlDatabaseGateway
                 .findUrlByToken(token)
                 .flatMap {
-                    urlPublisher.onUrlClicked(it, UrlPublishMetadata())
+                    urlPublisher.onUrlClicked(it, metadata)
                 }
                 .switchIfEmpty(Mono.error(UrlNotFoundException()))
     }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class CommonUrlClickFactoryTest {
-    lateinit var commonUrlClickFactory: CommonUrlClickFactory
+    private lateinit var commonUrlClickFactory: CommonUrlClickFactory
 
     @BeforeEach
     fun setUp() {
@@ -22,16 +22,16 @@ class CommonUrlClickFactoryTest {
                 platform = "Platform",
                 device = "Desktop",
                 browser = "Chrome",
-                country = "Brazil"
+                ip = ""
         )
 
         val urlClick = commonUrlClickFactory.create(request)
 
-        Assertions.assertEquals(urlClick.url, url)
+        Assertions.assertEquals(urlClick.urlId, url.id)
         Assertions.assertEquals(urlClick.platform, "Platform")
         Assertions.assertEquals(urlClick.device, "Desktop")
         Assertions.assertEquals(urlClick.browser, "Chrome")
-        Assertions.assertEquals(urlClick.country, "Brazil")
+        Assertions.assertEquals(urlClick.country, "")
     }
 
     private fun sampleUrl(): Url {

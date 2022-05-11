@@ -21,7 +21,7 @@ class MongoUrlDatabaseGateway(
                 .map(mongoUrlConverter::convertToDomain)
     }
 
-    override fun findById(id: UUID): Mono<Url> {
+    override fun findById(id: String): Mono<Url> {
         return mongoUrlRepository.findById(id)
                 .subscribeOn(Schedulers.boundedElastic())
                 .map(mongoUrlConverter::convertToDomain)
