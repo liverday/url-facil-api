@@ -6,7 +6,7 @@ import com.liverday.url.facil.url.domain.url.entities.Url
 import com.liverday.url.facil.url.domain.url.entities.UrlClick
 import com.liverday.url.facil.url.ports.converters.EntityConverter
 
-class MongoUrlClicksConverter(private val urlConverter: EntityConverter<Url, MongoUrlData>) : EntityConverter<UrlClick, MongoUrlClickData> {
+class MongoUrlClicksConverter() : EntityConverter<UrlClick, MongoUrlClickData> {
 
     override fun convertToDomain(entity: MongoUrlClickData): UrlClick {
         return UrlClick(

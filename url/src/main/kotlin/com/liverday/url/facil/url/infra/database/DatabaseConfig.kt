@@ -31,7 +31,7 @@ class DatabaseConfig {
 
     @Bean
     fun urlClicksConverter(): EntityConverter<UrlClick, MongoUrlClickData> {
-        return MongoUrlClicksConverter(urlConverter())
+        return MongoUrlClicksConverter()
     }
 
     @Bean
