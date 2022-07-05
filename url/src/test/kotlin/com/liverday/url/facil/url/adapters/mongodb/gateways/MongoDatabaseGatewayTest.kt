@@ -3,10 +3,9 @@ package com.liverday.url.facil.url.adapters.mongodb.gateways
 import com.liverday.url.facil.url.adapters.mongodb.converters.MongoUrlConverter
 import com.liverday.url.facil.url.adapters.mongodb.entities.MongoUrlData
 import com.liverday.url.facil.url.adapters.mongodb.repositories.MongoUrlRepository
-import com.liverday.url.facil.url.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.entities.Url
 import io.github.glytching.junit.extension.random.Random
 import io.github.glytching.junit.extension.random.RandomBeansExtension
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.Extensions
@@ -18,7 +17,6 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.test.StepVerifier
 import java.time.Duration
-import java.util.*
 
 @Extensions(value = [
     ExtendWith(MockitoExtension::class),

@@ -1,7 +1,7 @@
 package com.liverday.url.facil.url.adapters.mongodb.converters
 
 import com.liverday.url.facil.url.adapters.mongodb.entities.MongoUrlData
-import com.liverday.url.facil.url.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.entities.Url
 import io.github.glytching.junit.extension.random.Random
 import io.github.glytching.junit.extension.random.RandomBeansExtension
 import org.junit.jupiter.api.Assertions

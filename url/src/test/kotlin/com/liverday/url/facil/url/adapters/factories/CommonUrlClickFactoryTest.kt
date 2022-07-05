@@ -1,6 +1,6 @@
 package com.liverday.url.facil.url.adapters.factories
 
-import com.liverday.url.facil.url.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.entities.Url
 import com.liverday.url.facil.url.ports.usecases.url.CreateUrlClickRequest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach

@@ -1,7 +1,7 @@
 package com.liverday.url.facil.url.adapters.publishers
 
 import com.blueconic.browscap.UserAgentParser
-import com.liverday.url.facil.url.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.entities.Url
 import com.liverday.url.facil.url.ports.publishers.UrlPublishMetadata
 import com.liverday.url.facil.url.ports.publishers.UrlPublisher
 import com.liverday.url.facil.url.ports.usecases.url.CreateUrlClickRequest

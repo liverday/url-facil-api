@@ -1,4 +1,4 @@
-package com.liverday.url.facil.url.domain
+package com.liverday.url.facil.domain
 
 data class Validation (
     val field: String,

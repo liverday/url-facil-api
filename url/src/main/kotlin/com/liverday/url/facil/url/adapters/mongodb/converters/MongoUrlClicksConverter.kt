@@ -1,9 +1,7 @@
 package com.liverday.url.facil.url.adapters.mongodb.converters
 
 import com.liverday.url.facil.url.adapters.mongodb.entities.MongoUrlClickData
-import com.liverday.url.facil.url.adapters.mongodb.entities.MongoUrlData
-import com.liverday.url.facil.url.domain.url.entities.Url
-import com.liverday.url.facil.url.domain.url.entities.UrlClick
+import com.liverday.url.facil.domain.url.entities.UrlClick
 import com.liverday.url.facil.url.ports.converters.EntityConverter
 
 class MongoUrlClicksConverter() : EntityConverter<UrlClick, MongoUrlClickData> {

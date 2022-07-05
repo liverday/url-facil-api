@@ -1,4 +1,4 @@
-package com.liverday.url.facil.url.domain.url.entities
+package com.liverday.url.facil.domain.url.entities
 
 import java.time.LocalDateTime
 

@@ -1,12 +1,11 @@
 package com.liverday.url.facil.url.usecases.url
 
-import com.liverday.url.facil.url.domain.url.entities.Url
-import com.liverday.url.facil.url.domain.url.exceptions.UrlNotFoundException
+import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.exceptions.UrlNotFoundException
 import com.liverday.url.facil.url.ports.database.url.UrlDatabaseGateway
 import com.liverday.url.facil.url.ports.publishers.UrlPublishMetadata
 import com.liverday.url.facil.url.ports.publishers.UrlPublisher
 import com.liverday.url.facil.url.ports.usecases.url.FetchUrlByTokenInputBoundary
-import com.liverday.url.facil.url.ports.usecases.url.CreateUrlClickInputBoundary
 import reactor.core.publisher.Mono
 
 class FetchUrlByToken(

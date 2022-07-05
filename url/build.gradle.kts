@@ -3,13 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.6.2"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm")
     kotlin("plugin.spring") version "1.6.10"
     kotlin("plugin.noarg") version "1.6.10"
     kotlin("plugin.jpa") version "1.6.10"
 }
 
-group = "com.liverday"
+group = "com.liverday.url-facil.url"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -18,6 +18,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":domain"))
     implementation("org.springframework.boot:spring-boot-starter-hateoas")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")

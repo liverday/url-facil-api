@@ -1,14 +1,13 @@
 package com.liverday.url.facil.url.presenters.rest.exception
 
-import com.liverday.url.facil.url.domain.AppError
-import com.liverday.url.facil.url.domain.Validation
-import com.liverday.url.facil.url.domain.url.exceptions.TokenAlreadyExistException
-import com.liverday.url.facil.url.domain.url.exceptions.UrlNotFoundException
+import com.liverday.url.facil.domain.AppError
+import com.liverday.url.facil.domain.Validation
+import com.liverday.url.facil.domain.url.exceptions.TokenAlreadyExistException
+import com.liverday.url.facil.domain.url.exceptions.UrlNotFoundException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.validation.FieldError
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
