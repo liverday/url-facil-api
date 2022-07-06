@@ -1,4 +1,5 @@
 rootProject.name = "url-facil-api"
 
-include("url")
+include("application")
 include("domain")
+include("infrastructure")
