@@ -8,7 +8,7 @@ import com.liverday.url.facil.infrastructure.adapters.mongodb.gateways.MongoUrlC
 import com.liverday.url.facil.infrastructure.adapters.mongodb.gateways.MongoUrlDatabaseGateway
 import com.liverday.url.facil.infrastructure.adapters.mongodb.repositories.MongoUrlClicksRepository
 import com.liverday.url.facil.infrastructure.adapters.mongodb.repositories.MongoUrlRepository
-import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.Url
 import com.liverday.url.facil.domain.urlClick.UrlClick
 import com.liverday.url.facil.application.ports.converters.EntityConverter
 import com.liverday.url.facil.application.ports.database.url.UrlClicksDatabaseGateway

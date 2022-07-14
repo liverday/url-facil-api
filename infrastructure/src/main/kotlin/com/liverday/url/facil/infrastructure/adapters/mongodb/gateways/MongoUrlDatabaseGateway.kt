@@ -2,7 +2,7 @@ package com.liverday.url.facil.infrastructure.adapters.mongodb.gateways
 
 import com.liverday.url.facil.infrastructure.adapters.mongodb.entities.MongoUrlData
 import com.liverday.url.facil.infrastructure.adapters.mongodb.repositories.MongoUrlRepository
-import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.Url
 import com.liverday.url.facil.application.ports.converters.EntityConverter
 import com.liverday.url.facil.application.ports.database.url.UrlDatabaseGateway
 import reactor.core.publisher.Flux
@@ -15,6 +15,10 @@ class MongoUrlDatabaseGateway(
 ) : UrlDatabaseGateway {
     override fun save(url: Url): Mono<Url> {
         return Mono.just(mongoUrlConverter.convertToEntity(url))
+                .map { mongoUrl ->
+                    mongoUrl.id = null
+                    mongoUrl
+                }
                 .subscribeOn(Schedulers.boundedElastic())
                 .flatMap(mongoUrlRepository::save)
                 .map(mongoUrlConverter::convertToDomain)

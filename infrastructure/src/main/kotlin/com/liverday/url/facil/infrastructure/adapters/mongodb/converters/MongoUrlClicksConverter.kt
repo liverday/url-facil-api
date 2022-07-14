@@ -23,7 +23,7 @@ class MongoUrlClicksConverter : EntityConverter<UrlClick, MongoUrlClickData> {
 
     override fun convertToEntity(domain: UrlClick): MongoUrlClickData {
         return MongoUrlClickData(
-                domain.id.getValue(),
+                null,
                 domain.urlId.getValue(),
                 domain.platform,
                 domain.device,

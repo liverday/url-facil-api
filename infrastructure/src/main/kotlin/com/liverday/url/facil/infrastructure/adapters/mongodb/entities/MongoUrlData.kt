@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 @Document("urls")
 data class MongoUrlData(
     @Id
-    val id: String? = null,
+    var id: String? = null,
     val link: String,
     val token: String? = null,
     val createdAt: LocalDateTime,

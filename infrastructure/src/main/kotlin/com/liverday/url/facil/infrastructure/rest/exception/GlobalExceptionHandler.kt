@@ -19,7 +19,7 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityAlreadyExistsException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    fun handleTokenAlreadyExists(exception: EntityAlreadyExistsException): ResponseEntity<AppError> {
+    fun handleEntityAlreadyExists(exception: EntityAlreadyExistsException): ResponseEntity<AppError> {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(AppError(exception.message!!, exception.errors))
@@ -27,7 +27,7 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    fun handleUrlNotFoundException(exception: NotFoundException): ResponseEntity<AppError> {
+    fun handleNotFoundException(exception: NotFoundException): ResponseEntity<AppError> {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(AppError(exception.message!!, exception.errors))

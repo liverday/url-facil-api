@@ -1,6 +1,6 @@
 package com.liverday.url.facil.application.ports.database.url
 
-import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.Url
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 

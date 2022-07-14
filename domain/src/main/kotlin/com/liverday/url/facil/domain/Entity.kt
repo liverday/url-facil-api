@@ -1,11 +1,14 @@
 package com.liverday.url.facil.domain
 
+import com.liverday.url.facil.domain.exceptions.Error
 import java.util.*
 
 abstract class Entity<ID : Identifier>(private val id: ID) {
     init {
         Objects.requireNonNull(id, "'id' should not be null")
     }
+
+    abstract fun validate(): List<Error>
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

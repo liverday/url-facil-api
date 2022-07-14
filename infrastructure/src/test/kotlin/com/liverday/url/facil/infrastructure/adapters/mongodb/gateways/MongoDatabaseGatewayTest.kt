@@ -3,7 +3,7 @@ package com.liverday.url.facil.infrastructure.adapters.mongodb.gateways
 import com.liverday.url.facil.infrastructure.adapters.mongodb.converters.MongoUrlConverter
 import com.liverday.url.facil.infrastructure.adapters.mongodb.entities.MongoUrlData
 import com.liverday.url.facil.infrastructure.adapters.mongodb.repositories.MongoUrlRepository
-import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.Url
 import io.github.glytching.junit.extension.random.Random
 import io.github.glytching.junit.extension.random.RandomBeansExtension
 import org.junit.jupiter.api.Test

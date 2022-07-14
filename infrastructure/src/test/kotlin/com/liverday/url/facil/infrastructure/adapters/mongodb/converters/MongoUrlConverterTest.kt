@@ -1,7 +1,7 @@
 package com.liverday.url.facil.infrastructure.adapters.mongodb.converters
 
 import com.liverday.url.facil.infrastructure.adapters.mongodb.entities.MongoUrlData
-import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.Url
 import io.github.glytching.junit.extension.random.Random
 import io.github.glytching.junit.extension.random.RandomBeansExtension
 import org.junit.jupiter.api.Assertions
@@ -28,7 +28,7 @@ class MongoUrlConverterTest {
     fun givenAnEntity_shouldBeAbleToConvertToDomain(@Random mongoUrlData: MongoUrlData) {
         val convertedUrl = mongoUrlConverter.convertToDomain(mongoUrlData)
 
-        Assertions.assertEquals(convertedUrl.id, mongoUrlData.id)
+        Assertions.assertEquals(convertedUrl.id.getValue(), mongoUrlData.id)
         Assertions.assertEquals(convertedUrl.token, mongoUrlData.token)
         Assertions.assertEquals(convertedUrl.link, mongoUrlData.link)
         Assertions.assertEquals(convertedUrl.createdAt, mongoUrlData.createdAt)
@@ -39,7 +39,7 @@ class MongoUrlConverterTest {
     fun givenADomain_shouldBeAbleToConvertToEntity(@Random url: Url) {
         val entityUrl = mongoUrlConverter.convertToEntity(url)
 
-        Assertions.assertEquals(entityUrl.id, url.id)
+        Assertions.assertEquals(entityUrl.id, url.id.getValue())
         Assertions.assertEquals(entityUrl.token, url.token)
         Assertions.assertEquals(entityUrl.link, url.link)
         Assertions.assertEquals(entityUrl.createdAt, url.createdAt)

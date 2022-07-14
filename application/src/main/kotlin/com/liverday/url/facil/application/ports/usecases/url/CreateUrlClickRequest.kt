@@ -1,6 +1,6 @@
 package com.liverday.url.facil.application.ports.usecases.url
 
-import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.Url
 
 data class CreateUrlClickRequest(
         val url: Url,

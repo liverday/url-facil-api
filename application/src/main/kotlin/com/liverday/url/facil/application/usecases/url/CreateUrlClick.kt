@@ -17,11 +17,16 @@ class CreateUrlClick(
         private val logger: Logger
 ) : CreateUrlClickInputBoundary {
     override fun execute(input: CreateUrlClickRequest): Mono<UrlClick> {
-        return Mono.just(urlClickFactory.create(input))
-                .flatMap { urlClick ->
-                    urlClicksDatabaseGateway.save(urlClick)
-                }
-                .subscribeOn(Schedulers.boundedElastic())
+        return Mono.fromCallable {
+            val either = urlClickFactory.create(input)
+
+            if (either.isLeft())
+                throw either.getLeft()
+
+            either.getRight()
+        }.flatMap { urlClick ->
+            urlClicksDatabaseGateway.save(urlClick)
+        }.subscribeOn(Schedulers.boundedElastic())
     }
 
     init {

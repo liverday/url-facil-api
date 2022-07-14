@@ -1,6 +1,6 @@
 package com.liverday.url.facil.infrastructure.rest.endpoints
 
-import com.liverday.url.facil.domain.url.entities.Url
+import com.liverday.url.facil.domain.url.Url
 import com.liverday.url.facil.application.ports.usecases.url.CreateUrlInputBoundary
 import com.liverday.url.facil.application.ports.usecases.url.CreateUrlRequest
 import org.springframework.hateoas.EntityModel

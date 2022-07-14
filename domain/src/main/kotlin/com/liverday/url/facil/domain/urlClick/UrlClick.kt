@@ -1,6 +1,7 @@
 package com.liverday.url.facil.domain.urlClick
 
 import com.liverday.url.facil.domain.AggregateRoot
+import com.liverday.url.facil.domain.exceptions.Error
 import com.liverday.url.facil.domain.url.UrlID
 import java.time.LocalDateTime
 
@@ -13,4 +14,18 @@ data class UrlClick(
         val country: String,
         val createdAt: LocalDateTime = LocalDateTime.now(),
         val updatedAt: LocalDateTime = LocalDateTime.now()
-) : AggregateRoot<UrlClickID>(id)
+) : AggregateRoot<UrlClickID>(id) {
+
+    override fun validate(): List<Error> {
+        val errors = mutableListOf<Error>()
+
+        if (platform == "")
+            errors.add(Error("'platform' is required"))
+        if (device == "")
+            errors.add(Error("'device' is required"))
+        if (browser == "")
+            errors.add(Error("'browser' is required"))
+
+        return errors
+    }
+}

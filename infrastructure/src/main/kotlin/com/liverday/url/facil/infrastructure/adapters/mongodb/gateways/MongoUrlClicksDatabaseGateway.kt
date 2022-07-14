@@ -16,7 +16,6 @@ class MongoUrlClicksDatabaseGateway(
         return Mono.just(mongoUrlClicksConverter.convertToEntity(urlClick))
                 .flatMap(mongoUrlClicksRepository::save)
                 .map(mongoUrlClicksConverter::convertToDomain)
-
     }
 
     override fun findAll(): Flux<UrlClick> {

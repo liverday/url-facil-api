@@ -1,7 +1,7 @@
 package com.liverday.url.facil.infrastructure.adapters.factories
 
-import com.liverday.url.facil.domain.exceptions.InvalidUrlArgumentsException
 import com.liverday.url.facil.application.ports.usecases.url.CreateUrlRequest
+import com.liverday.url.facil.domain.exceptions.DomainCreationException
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -21,9 +21,12 @@ class CommonUrlFactoryTest {
         val request = CreateUrlRequest("https://link.com", "teste")
 
         // when
-        val url = commonUrlFactory.create(request)
+        val either = commonUrlFactory.create(request)
 
         // then
+        Assertions.assertFalse(either.isLeft())
+
+        val url = either.getRight()
         Assertions.assertEquals(url.link, request.link)
         Assertions.assertEquals(url.token, request.token)
     }
@@ -34,21 +37,26 @@ class CommonUrlFactoryTest {
         val request = CreateUrlRequest("https://link.com")
 
         // when
-        val url = commonUrlFactory.create(request)
+        val either = commonUrlFactory.create(request)
 
         // then
+        Assertions.assertFalse(either.isLeft())
+
+        val url = either.getRight()
         Assertions.assertEquals(url.link, request.link)
         Assertions.assertEquals(url.token, null)
     }
 
     @Test
-    fun shouldThrowErrorWhenUrlIsWithoutLink() {
+    fun shouldThrownAnExceptionIfTheRequestWasSentWithoutLink() {
         // given
         val request = CreateUrlRequest(null)
 
         // when
-        Assertions.assertThrows(InvalidUrlArgumentsException::class.java) {
-            commonUrlFactory.create(request)
-        }
+        val either = commonUrlFactory.create(request)
+
+        // then
+        Assertions.assertTrue(either.isLeft())
+        Assertions.assertEquals(either.getLeft()::class.java, DomainCreationException::class.java)
     }
 }

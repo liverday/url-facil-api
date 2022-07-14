@@ -19,7 +19,7 @@ class MongoUrlConverter : EntityConverter<Url, MongoUrlData> {
     override fun convertToEntity(domain: Url): MongoUrlData {
         return MongoUrlData(
                 domain.id.getValue(),
-                domain.link,
+                domain.link!!,
                 domain.token,
                 domain.createdAt,
                 domain.updatedAt

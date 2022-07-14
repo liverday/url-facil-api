@@ -1,14 +1,12 @@
 package com.liverday.url.facil.domain.exceptions
 
-import com.liverday.url.facil.domain.AggregateRoot
-
 class EntityAlreadyExistsException(
         message: String,
         errors: List<Error>
 ) : DomainException(message, errors) {
     companion object {
-        fun <T : AggregateRoot<*>> with(clazz: Class<T>): EntityAlreadyExistsException {
-            val message = "${clazz.simpleName} already exists with the following arguments"
+        private const val DEFAULT_MESSAGE = "The entity already exists with the sent arguments"
+        fun with(message: String = DEFAULT_MESSAGE): EntityAlreadyExistsException {
             return EntityAlreadyExistsException(message, emptyList())
         }
     }
