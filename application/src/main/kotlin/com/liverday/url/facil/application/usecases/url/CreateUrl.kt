@@ -24,13 +24,13 @@ class CreateUrl(
 
             either.getRight()
         }.flatMap { url ->
-            Mono.fromCallable {
-                if (url.token == null) {
-                    createUrlTokenInputBoundary.execute()
-                } else {
-                    Mono.just(url.token!!)
-                }
-            }.flatMap { token -> token }.map { token ->
+            val tokenMono = if (url.token == null) {
+                createUrlTokenInputBoundary.execute()
+            } else {
+                Mono.just(url.token!!)
+            }
+
+            tokenMono.map { token ->
                 url.token = token
                 url
             }
