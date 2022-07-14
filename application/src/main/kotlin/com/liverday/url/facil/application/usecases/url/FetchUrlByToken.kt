@@ -1,7 +1,7 @@
 package com.liverday.url.facil.application.usecases.url
 
 import com.liverday.url.facil.domain.url.entities.Url
-import com.liverday.url.facil.domain.url.exceptions.UrlNotFoundException
+import com.liverday.url.facil.domain.exceptions.UrlNotFoundException
 import com.liverday.url.facil.application.ports.database.url.UrlDatabaseGateway
 import com.liverday.url.facil.application.ports.publishers.UrlPublishMetadata
 import com.liverday.url.facil.application.ports.publishers.UrlPublisher

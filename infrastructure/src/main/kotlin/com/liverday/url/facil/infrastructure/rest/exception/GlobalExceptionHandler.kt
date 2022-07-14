@@ -1,9 +1,8 @@
 package com.liverday.url.facil.infrastructure.rest.exception
 
-import com.liverday.url.facil.domain.AppError
-import com.liverday.url.facil.domain.Validation
-import com.liverday.url.facil.domain.url.exceptions.TokenAlreadyExistException
-import com.liverday.url.facil.domain.url.exceptions.UrlNotFoundException
+import com.liverday.url.facil.domain.exceptions.EntityAlreadyExistsException
+import com.liverday.url.facil.domain.exceptions.Error
+import com.liverday.url.facil.domain.exceptions.NotFoundException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -18,24 +17,20 @@ import org.springframework.web.bind.support.WebExchangeBindException
 class GlobalExceptionHandler {
     private val logger: Logger = LoggerFactory.getLogger(GlobalExceptionHandler::class.java)
 
-    @ExceptionHandler(TokenAlreadyExistException::class)
+    @ExceptionHandler(EntityAlreadyExistsException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    fun handleTokenAlreadyExists(): ResponseEntity<AppError> {
+    fun handleTokenAlreadyExists(exception: EntityAlreadyExistsException): ResponseEntity<AppError> {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(
-                        AppError(HttpStatus.BAD_REQUEST.value(), "Token já existe")
-                )
+                .body(AppError(exception.message!!, exception.errors))
     }
 
-    @ExceptionHandler(UrlNotFoundException::class)
+    @ExceptionHandler(NotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    fun handleUrlNotFoundException(): ResponseEntity<AppError> {
+    fun handleUrlNotFoundException(exception: NotFoundException): ResponseEntity<AppError> {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body(
-                        AppError(HttpStatus.NOT_FOUND.value(), "URL não existe")
-                )
+                .body(AppError(exception.message!!, exception.errors))
     }
 
     @ExceptionHandler(WebExchangeBindException::class)
@@ -43,14 +38,12 @@ class GlobalExceptionHandler {
     fun handleValidationError(ex: WebExchangeBindException): ResponseEntity<AppError> {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(
-                        AppError(HttpStatus.BAD_REQUEST.value(), "Erros de validação", fromWebExchangeBindException(ex))
-                )
+                .body(AppError( "Erros de validação", fromWebExchangeBindException(ex)))
     }
 
-    fun fromWebExchangeBindException(ex: WebExchangeBindException): List<Validation> {
+    fun fromWebExchangeBindException(ex: WebExchangeBindException): List<Error> {
         return ex.fieldErrors
-                .map { fieldError -> Validation(fieldError.field, fieldError.defaultMessage!!) }
+                .map { fieldError -> Error(fieldError.defaultMessage!!) }
     }
 
     @ExceptionHandler(Exception::class)
@@ -59,8 +52,11 @@ class GlobalExceptionHandler {
         logger.error("Internal server error: {}", ex)
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(
-                        AppError(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Erro inesperado")
-                )
+                .body(AppError( "Erro inesperado"))
     }
+
+    data class AppError(
+            val message: String,
+            val errors: List<Error> = listOf()
+    )
 }

@@ -1,6 +1,6 @@
 package com.liverday.url.facil.application.usecases.url
 
-import com.liverday.url.facil.domain.url.entities.UrlClick
+import com.liverday.url.facil.domain.urlClick.UrlClick
 import com.liverday.url.facil.application.ports.database.url.UrlClicksDatabaseGateway
 import com.liverday.url.facil.application.ports.factories.url.UrlClickFactory
 import com.liverday.url.facil.application.ports.usecases.url.CreateUrlClickInputBoundary

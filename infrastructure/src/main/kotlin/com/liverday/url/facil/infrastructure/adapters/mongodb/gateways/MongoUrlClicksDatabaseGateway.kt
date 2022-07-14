@@ -2,7 +2,7 @@ package com.liverday.url.facil.infrastructure.adapters.mongodb.gateways
 
 import com.liverday.url.facil.infrastructure.adapters.mongodb.entities.MongoUrlClickData
 import com.liverday.url.facil.infrastructure.adapters.mongodb.repositories.MongoUrlClicksRepository
-import com.liverday.url.facil.domain.url.entities.UrlClick
+import com.liverday.url.facil.domain.urlClick.UrlClick
 import com.liverday.url.facil.application.ports.converters.EntityConverter
 import com.liverday.url.facil.application.ports.database.url.UrlClicksDatabaseGateway
 import reactor.core.publisher.Flux

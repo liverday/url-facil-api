@@ -1,7 +1,7 @@
 package com.liverday.url.facil.application.usecases.url
 
 import com.liverday.url.facil.domain.url.entities.Url
-import com.liverday.url.facil.domain.url.exceptions.TokenAlreadyExistException
+import com.liverday.url.facil.domain.exceptions.TokenAlreadyExistException
 import com.liverday.url.facil.application.ports.database.url.UrlDatabaseGateway
 import com.liverday.url.facil.application.ports.factories.url.UrlFactory
 import com.liverday.url.facil.application.ports.usecases.url.CreateUrlInputBoundary
