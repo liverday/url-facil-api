@@ -8,10 +8,10 @@ import java.time.LocalDateTime
 data class UrlClick(
         var id: UrlClickID,
         var urlId: UrlID,
-        val platform: String,
-        val device: String,
-        val browser: String,
-        val country: String,
+        val platform: String = "",
+        val device: String = "",
+        val browser: String = "",
+        val country: String? = null,
         val createdAt: LocalDateTime = LocalDateTime.now(),
         val updatedAt: LocalDateTime = LocalDateTime.now()
 ) : AggregateRoot<UrlClickID>(id) {

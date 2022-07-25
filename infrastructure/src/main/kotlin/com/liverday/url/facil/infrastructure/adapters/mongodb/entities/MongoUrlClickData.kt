@@ -12,7 +12,7 @@ data class MongoUrlClickData(
         val platform: String,
         val device: String,
         val browser: String,
-        val country: String,
+        val country: String?,
         val createdAt: LocalDateTime = LocalDateTime.now(),
         val updatedAt: LocalDateTime = LocalDateTime.now()
 )
