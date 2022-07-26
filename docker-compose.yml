@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mongodb:
-    container_name: url-facil-api_mongo
+    container_name: shortly-api-mongo
     image: mongo
     restart: always
     environment:

@@ -1,0 +1,23 @@
+package com.liverday.shortly.application.usecases.url
+
+import com.liverday.shortlyl.domain.url.Url
+import com.liverday.shortly.application.ports.database.url.UrlDatabaseGateway
+import com.liverday.shortly.application.ports.publishers.UrlPublishMetadata
+import com.liverday.shortly.application.ports.publishers.UrlPublisher
+import com.liverday.shortly.application.ports.usecases.url.FetchUrlByTokenInputBoundary
+import com.liverday.shortlyl.domain.exceptions.NotFoundException
+import reactor.core.publisher.Mono
+
+class FetchUrlByToken(
+        private val urlDatabaseGateway: UrlDatabaseGateway,
+        private val urlPublisher: UrlPublisher
+) : FetchUrlByTokenInputBoundary {
+    override fun execute(token: String, metadata: UrlPublishMetadata): Mono<Url> {
+        return urlDatabaseGateway
+                .findUrlByToken(token)
+                .flatMap {
+                    urlPublisher.onUrlClicked(it, metadata)
+                }
+                .switchIfEmpty(Mono.error(NotFoundException.with(Url::class.java, "token", token)))
+    }
+}

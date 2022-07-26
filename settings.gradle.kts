@@ -1,4 +1,4 @@
-rootProject.name = "url-facil-api"
+rootProject.name = "shortly-api"
 
 include("application")
 include("domain")
