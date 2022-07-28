@@ -1,4 +1,4 @@
-package com.liverday.shortlyl.domain.logger
+package com.liverday.shortly.domain.logger
 
 interface Logger {
     fun info(message: String, vararg metadata: Any)

@@ -1,7 +1,7 @@
 package com.liverday.shortly.infrastructure.adapters.factories
 
 import com.liverday.shortly.application.ports.usecases.url.CreateUrlRequest
-import com.liverday.shortlyl.domain.exceptions.DomainCreationException
+import com.liverday.shortly.domain.exceptions.DomainCreationException
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -57,6 +57,6 @@ class CommonUrlFactoryTest {
 
         // then
         Assertions.assertTrue(either.isLeft())
-        Assertions.assertEquals(either.getLeft()::class.java, DomainCreationException::class.java)
+        Assertions.assertEquals(either.getLeft()::class.java, com.liverday.shortly.domain.exceptions.DomainCreationException::class.java)
     }
 }

@@ -1,10 +1,10 @@
 package com.liverday.shortly.application.ports.factories.url
 
-import com.liverday.shortlyl.domain.url.Url
+import com.liverday.shortly.domain.url.Url
 import com.liverday.shortly.application.ports.usecases.url.CreateUrlRequest
-import com.liverday.shortlyl.domain.Either
-import com.liverday.shortlyl.domain.exceptions.DomainCreationException
+import com.liverday.shortly.domain.Either
+import com.liverday.shortly.domain.exceptions.DomainCreationException
 
 interface UrlFactory {
-    fun create(request: CreateUrlRequest): Either<DomainCreationException, Url>
+    fun create(request: CreateUrlRequest): com.liverday.shortly.domain.Either<com.liverday.shortly.domain.exceptions.DomainCreationException, com.liverday.shortly.domain.url.Url>
 }

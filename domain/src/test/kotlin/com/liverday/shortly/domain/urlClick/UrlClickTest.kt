@@ -1,20 +1,18 @@
-package com.liverday.shortlyl.domain.urlClick
+package com.liverday.shortly.domain.urlClick
 
-import com.liverday.shortlyl.domain.url.UrlID
+import com.liverday.shortly.domain.url.UrlID
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class UrlClickTest {
     @Test
     fun givenValidParams_whenCallUrlConstructor_shouldInstantiateIt() {
-        val urlID = UrlID.unique()
-        val urlClickID = UrlClickID.unique()
+        val urlID = com.liverday.shortly.domain.url.UrlID.unique()
         val expectedBrowser = "Chrome"
         val expectedPlatform = "Linux"
         val expectedDevice = "Notebook"
 
-        val urlClick = UrlClick(
-                urlClickID,
+        val urlClick = UrlClick.newUrlClick(
                 urlID,
                 device = expectedDevice,
                 browser = expectedBrowser,
@@ -32,9 +30,8 @@ class UrlClickTest {
 
     @Test
     fun givenInvalidParams_whenCallUrlConstructorAndCallValidate_shouldReturnErrors() {
-        val urlID = UrlID.unique()
-        val urlClickID = UrlClickID.unique()
-        val urlClick = UrlClick(urlClickID, urlID)
+        val urlID = com.liverday.shortly.domain.url.UrlID.unique()
+        val urlClick = UrlClick.newUrlClick(urlID, "", "", "")
 
         val errors = urlClick.validate()
 

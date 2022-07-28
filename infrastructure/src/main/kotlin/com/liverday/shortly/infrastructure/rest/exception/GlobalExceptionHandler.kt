@@ -1,8 +1,8 @@
 package com.liverday.shortly.infrastructure.rest.exception
 
-import com.liverday.shortlyl.domain.exceptions.EntityAlreadyExistsException
-import com.liverday.shortlyl.domain.exceptions.Error
-import com.liverday.shortlyl.domain.exceptions.NotFoundException
+import com.liverday.shortly.domain.exceptions.EntityAlreadyExistsException
+import com.liverday.shortly.domain.exceptions.Error
+import com.liverday.shortly.domain.exceptions.NotFoundException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -17,17 +17,17 @@ import org.springframework.web.bind.support.WebExchangeBindException
 class GlobalExceptionHandler {
     private val logger: Logger = LoggerFactory.getLogger(GlobalExceptionHandler::class.java)
 
-    @ExceptionHandler(EntityAlreadyExistsException::class)
+    @ExceptionHandler(com.liverday.shortly.domain.exceptions.EntityAlreadyExistsException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    fun handleEntityAlreadyExists(exception: EntityAlreadyExistsException): ResponseEntity<AppError> {
+    fun handleEntityAlreadyExists(exception: com.liverday.shortly.domain.exceptions.EntityAlreadyExistsException): ResponseEntity<AppError> {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(AppError(exception.message!!, exception.errors))
     }
 
-    @ExceptionHandler(NotFoundException::class)
+    @ExceptionHandler(com.liverday.shortly.domain.exceptions.NotFoundException::class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    fun handleNotFoundException(exception: NotFoundException): ResponseEntity<AppError> {
+    fun handleNotFoundException(exception: com.liverday.shortly.domain.exceptions.NotFoundException): ResponseEntity<AppError> {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(AppError(exception.message!!, exception.errors))
@@ -41,9 +41,9 @@ class GlobalExceptionHandler {
                 .body(AppError( "Erros de validação", fromWebExchangeBindException(ex)))
     }
 
-    fun fromWebExchangeBindException(ex: WebExchangeBindException): List<Error> {
+    fun fromWebExchangeBindException(ex: WebExchangeBindException): List<com.liverday.shortly.domain.exceptions.Error> {
         return ex.fieldErrors
-                .map { fieldError -> Error(fieldError.defaultMessage!!) }
+                .map { fieldError -> com.liverday.shortly.domain.exceptions.Error(fieldError.defaultMessage!!) }
     }
 
     @ExceptionHandler(Exception::class)
@@ -57,6 +57,6 @@ class GlobalExceptionHandler {
 
     data class AppError(
             val message: String,
-            val errors: List<Error> = listOf()
+            val errors: List<com.liverday.shortly.domain.exceptions.Error> = listOf()
     )
 }

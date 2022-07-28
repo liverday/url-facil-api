@@ -1,7 +1,7 @@
 package com.liverday.shortly.infrastructure.adapters.publishers
 
 import com.blueconic.browscap.UserAgentParser
-import com.liverday.shortlyl.domain.url.Url
+import com.liverday.shortly.domain.url.Url
 import com.liverday.shortly.application.ports.publishers.UrlPublishMetadata
 import com.liverday.shortly.application.ports.publishers.UrlPublisher
 import com.liverday.shortly.application.ports.usecases.url.CreateUrlClickRequest
@@ -15,7 +15,7 @@ class SinkUrlPublisher(
         private val userAgentParser: UserAgentParser
 ) : UrlPublisher {
     private val logger = LoggerFactory.getLogger(SinkUrlPublisher::class.java)
-    override fun onUrlClicked(url: Url, metadata: UrlPublishMetadata): Mono<Url> {
+    override fun onUrlClicked(url: com.liverday.shortly.domain.url.Url, metadata: UrlPublishMetadata): Mono<com.liverday.shortly.domain.url.Url> {
         val parsedUserAgent = userAgentParser.parse(metadata.userAgent)
         return Mono.fromCallable {
             CreateUrlClickRequest(

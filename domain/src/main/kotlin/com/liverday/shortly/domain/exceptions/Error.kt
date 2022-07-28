@@ -1,4 +1,4 @@
-package com.liverday.shortlyl.domain.exceptions
+package com.liverday.shortly.domain.exceptions
 
 data class Error(
         val message: String

@@ -1,9 +1,9 @@
-package com.liverday.shortlyl.domain.urlClick
+package com.liverday.shortly.domain.urlClick
 
-import com.liverday.shortlyl.domain.Identifier
+import com.liverday.shortly.domain.Identifier
 import java.util.*
 
-class UrlClickID private constructor(private val value: String) : Identifier() {
+class UrlClickID private constructor(private val value: String) : com.liverday.shortly.domain.Identifier() {
     init {
         Objects.requireNonNull(value)
     }
@@ -11,7 +11,7 @@ class UrlClickID private constructor(private val value: String) : Identifier() {
     companion object {
         fun unique() = from(UUID.randomUUID())
         fun from(value: String) = UrlClickID(value)
-        fun from(value: UUID) = UrlClickID(value.toString().lowercase())
+        private fun from(value: UUID) = UrlClickID(value.toString().lowercase())
     }
 
     override fun getValue(): String {
@@ -22,7 +22,7 @@ class UrlClickID private constructor(private val value: String) : Identifier() {
         if (this === other) return true
         if (other !is UrlClickID) return false
 
-        return value == other.value
+        return value === other.value
     }
 
     override fun hashCode(): Int {

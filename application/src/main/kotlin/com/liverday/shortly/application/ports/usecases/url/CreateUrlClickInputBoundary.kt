@@ -1,6 +1,6 @@
 package com.liverday.shortly.application.ports.usecases.url
 
-import com.liverday.shortlyl.domain.urlClick.UrlClick
+import com.liverday.shortly.domain.urlClick.UrlClick
 import reactor.core.publisher.Mono
 
 interface CreateUrlClickInputBoundary {

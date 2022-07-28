@@ -1,4 +1,4 @@
-package com.liverday.shortlyl.domain.exceptions
+package com.liverday.shortly.domain.exceptions
 
 open class NoStacktraceError : RuntimeException {
     constructor(message: String): super(message, null)

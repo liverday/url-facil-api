@@ -1,7 +1,7 @@
 package com.liverday.shortly.infrastructure.adapters.mongodb.converters
 
 import com.liverday.shortly.infrastructure.adapters.mongodb.entities.MongoUrlData
-import com.liverday.shortlyl.domain.url.Url
+import com.liverday.shortly.domain.url.Url
 import io.github.glytching.junit.extension.random.Random
 import io.github.glytching.junit.extension.random.RandomBeansExtension
 import org.junit.jupiter.api.Assertions
@@ -36,7 +36,7 @@ class MongoUrlConverterTest {
     }
 
     @Test
-    fun givenADomain_shouldBeAbleToConvertToEntity(@Random url: Url) {
+    fun givenADomain_shouldBeAbleToConvertToEntity(@Random url: com.liverday.shortly.domain.url.Url) {
         val entityUrl = mongoUrlConverter.convertToEntity(url)
 
         Assertions.assertEquals(entityUrl.id, url.id.getValue())

@@ -1,6 +1,6 @@
-package com.liverday.shortlyl.domain.url
+package com.liverday.shortly.domain.url
 
-import com.liverday.shortlyl.domain.exceptions.Error
+import com.liverday.shortly.domain.exceptions.Error
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -11,7 +11,7 @@ class UrlTest {
         val expectedLink = "expectedLink"
         val expectedToken = "abc"
 
-        val url = Url(id = UrlID.unique(), link = expectedLink, token = expectedToken)
+        val url = com.liverday.shortly.domain.url.Url.newUrl(expectedLink, expectedToken)
 
         Assertions.assertEquals(url.link, expectedLink)
         Assertions.assertEquals(url.token, expectedToken)
@@ -19,8 +19,8 @@ class UrlTest {
 
     @Test
     fun givenInvalidParams_whenCallUrlConstructorAndCallValidate_shouldReturnErrors() {
-        val url = Url(id = UrlID.unique(), link = null, token = null)
-        val errors: List<Error> = url.validate()
+        val url = com.liverday.shortly.domain.url.Url.newUrl(null, null)
+        val errors: List<com.liverday.shortly.domain.exceptions.Error> = url.validate()
 
         Assertions.assertEquals(errors.size, 1)
         Assertions.assertEquals(errors.first().message, "The link is required")

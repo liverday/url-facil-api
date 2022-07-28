@@ -1,9 +1,9 @@
 package com.liverday.shortly.infrastructure.adapters.factories
 
-import com.liverday.shortlyl.domain.url.Url
+import com.liverday.shortly.domain.url.Url
 import com.liverday.shortly.application.ports.usecases.url.CreateUrlClickRequest
-import com.liverday.shortlyl.domain.exceptions.DomainCreationException
-import com.liverday.shortlyl.domain.url.UrlID
+import com.liverday.shortly.domain.exceptions.DomainCreationException
+import com.liverday.shortly.domain.url.UrlID
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -55,12 +55,12 @@ class CommonUrlClickFactoryTest {
 
         val exception = either.getLeft()
         Assertions.assertEquals(exception.errors.size, 1)
-        Assertions.assertEquals(exception::class.java, DomainCreationException::class.java)
+        Assertions.assertEquals(exception::class.java, com.liverday.shortly.domain.exceptions.DomainCreationException::class.java)
     }
 
-    private fun sampleUrl(): Url {
-        return Url(
-                UrlID.from("id"),
+    private fun sampleUrl(): com.liverday.shortly.domain.url.Url {
+        return com.liverday.shortly.domain.url.Url(
+                com.liverday.shortly.domain.url.UrlID.from("id"),
                 "link.com",
                 "abcde"
         )

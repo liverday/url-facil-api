@@ -1,9 +1,9 @@
 package com.liverday.shortly.infrastructure.adapters.logger
 
-import com.liverday.shortlyl.domain.logger.Logger
+import com.liverday.shortly.domain.logger.Logger
 import org.slf4j.LoggerFactory
 
-class Slf4jLogger(clazz: Class<*>) : Logger {
+class Slf4jLogger(clazz: Class<*>) : com.liverday.shortly.domain.logger.Logger {
     private val logger: org.slf4j.Logger = LoggerFactory.getLogger(clazz)
 
     override fun info(message: String, vararg metadata: Any) {

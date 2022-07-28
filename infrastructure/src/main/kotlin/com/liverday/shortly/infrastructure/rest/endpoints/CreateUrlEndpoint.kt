@@ -1,6 +1,6 @@
 package com.liverday.shortly.infrastructure.rest.endpoints
 
-import com.liverday.shortlyl.domain.url.Url
+import com.liverday.shortly.domain.url.Url
 import com.liverday.shortly.application.ports.usecases.url.CreateUrlInputBoundary
 import com.liverday.shortly.application.ports.usecases.url.CreateUrlRequest
 import org.springframework.hateoas.EntityModel
@@ -24,7 +24,7 @@ class CreateUrlEndpoint(
     fun execute(
             @Valid @RequestBody body: CreateUrlRequest,
             exchange: ServerWebExchange
-    ): Mono<EntityModel<Url>> {
+    ): Mono<EntityModel<com.liverday.shortly.domain.url.Url>> {
         val fetchUrlByTokenEndpoint = methodOn(FetchUrlByTokenEndpoint::class.java)
         return createUrlInputBoundary.execute(body)
                 .flatMap {
