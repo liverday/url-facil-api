@@ -18,19 +18,19 @@ data class User(
         }
     }
 
-    override fun validate(): List<com.liverday.shortly.domain.exceptions.Error> {
-        val errors = mutableListOf<com.liverday.shortly.domain.exceptions.Error>()
+    override fun validate(): List<Error> {
+        val errors = mutableListOf<Error>()
 
         if (email === "") {
-            errors.add(com.liverday.shortly.domain.exceptions.Error("The email is required"))
+            errors.add(Error("The email is required"))
         }
 
         if (firstName === "") {
-            errors.add(com.liverday.shortly.domain.exceptions.Error("The first name is required"))
+            errors.add(Error("The first name is required"))
         }
 
         if (lastName === "") {
-            errors.add(com.liverday.shortly.domain.exceptions.Error("The last name is required"))
+            errors.add(Error("The last name is required"))
         }
 
         return errors;

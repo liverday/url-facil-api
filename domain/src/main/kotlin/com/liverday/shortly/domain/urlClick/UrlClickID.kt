@@ -3,7 +3,7 @@ package com.liverday.shortly.domain.urlClick
 import com.liverday.shortly.domain.Identifier
 import java.util.*
 
-class UrlClickID private constructor(private val value: String) : com.liverday.shortly.domain.Identifier() {
+class UrlClickID private constructor(private val value: String) : Identifier() {
     init {
         Objects.requireNonNull(value)
     }

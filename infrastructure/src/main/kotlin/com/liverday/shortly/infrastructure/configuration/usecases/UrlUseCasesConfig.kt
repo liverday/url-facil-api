@@ -9,9 +9,10 @@ import com.liverday.shortly.application.ports.factories.url.UrlClickFactory
 import com.liverday.shortly.application.ports.factories.url.UrlFactory
 import com.liverday.shortly.application.ports.publishers.UrlPublisher
 import com.liverday.shortly.application.ports.usecases.url.*
-import com.liverday.shortly.application.ports.usecases.url.*
+import com.liverday.shortly.application.ports.usecases.urlClick.CreateUrlClickInputBoundary
+import com.liverday.shortly.application.ports.usecases.urlClick.CreateUrlClickRequest
 import com.liverday.shortly.application.usecases.url.CreateUrl
-import com.liverday.shortly.application.usecases.url.CreateUrlClick
+import com.liverday.shortly.application.usecases.urlClick.CreateUrlClick
 import com.liverday.shortly.application.usecases.url.CreateUrlToken
 import com.liverday.shortly.application.usecases.url.FetchUrlByToken
 import com.liverday.shortly.infrastructure.adapters.logger.Slf4jLogger

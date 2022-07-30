@@ -11,9 +11,9 @@ import reactor.core.scheduler.Schedulers
 
 class MongoUrlDatabaseGateway(
         private val mongoUrlRepository: MongoUrlRepository,
-        private val mongoUrlConverter: EntityConverter<com.liverday.shortly.domain.url.Url, MongoUrlData>
+        private val mongoUrlConverter: EntityConverter<Url, MongoUrlData>
 ) : UrlDatabaseGateway {
-    override fun save(url: com.liverday.shortly.domain.url.Url): Mono<com.liverday.shortly.domain.url.Url> {
+    override fun save(url: Url): Mono<Url> {
         return Mono.just(mongoUrlConverter.convertToEntity(url))
                 .map { mongoUrl ->
                     mongoUrl.id = null
@@ -24,20 +24,20 @@ class MongoUrlDatabaseGateway(
                 .map(mongoUrlConverter::convertToDomain)
     }
 
-    override fun findById(id: String): Mono<com.liverday.shortly.domain.url.Url> {
+    override fun findById(id: String): Mono<Url> {
         return mongoUrlRepository.findById(id)
                 .subscribeOn(Schedulers.boundedElastic())
                 .map(mongoUrlConverter::convertToDomain)
     }
 
-    override fun findUrlByToken(token: String): Mono<com.liverday.shortly.domain.url.Url> {
+    override fun findUrlByToken(token: String): Mono<Url> {
         return mongoUrlRepository
                 .findByToken(token)
                 .subscribeOn(Schedulers.boundedElastic())
                 .map(mongoUrlConverter::convertToDomain)
     }
 
-    override fun findAll(): Flux<com.liverday.shortly.domain.url.Url> {
+    override fun findAll(): Flux<Url> {
         return mongoUrlRepository
                 .findAll()
                 .subscribeOn(Schedulers.boundedElastic())

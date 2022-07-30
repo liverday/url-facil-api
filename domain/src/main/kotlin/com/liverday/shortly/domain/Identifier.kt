@@ -1,5 +1,5 @@
 package com.liverday.shortly.domain
 
-abstract class Identifier : com.liverday.shortly.domain.ValueObject() {
+abstract class Identifier : ValueObject() {
     abstract fun getValue(): String;
 }

@@ -8,7 +8,7 @@ abstract class Either<L, R> private constructor() {
     abstract fun getLeft(): L
     abstract fun getRight(): R
 
-    class Left<L, R>(private val value: L) : com.liverday.shortly.domain.Either<L, R>() {
+    class Left<L, R>(private val value: L) : Either<L, R>() {
         override fun isLeft(): Boolean {
             return true
         }
@@ -26,7 +26,7 @@ abstract class Either<L, R> private constructor() {
         }
     }
 
-    class Right<L, R>(private val value: R) : com.liverday.shortly.domain.Either<L, R>() {
+    class Right<L, R>(private val value: R) : Either<L, R>() {
         override fun isLeft(): Boolean {
             return false
         }
@@ -45,7 +45,7 @@ abstract class Either<L, R> private constructor() {
     }
 
     companion object {
-        fun <L, R> right(value: R): com.liverday.shortly.domain.Either<L, R> = com.liverday.shortly.domain.Either.Right(value)
-        fun <L, R> left(value: L): com.liverday.shortly.domain.Either<L, R> = com.liverday.shortly.domain.Either.Left(value)
+        fun <L, R> right(value: R): Either<L, R> = Right(value)
+        fun <L, R> left(value: L): Either<L, R> = Left(value)
     }
 }

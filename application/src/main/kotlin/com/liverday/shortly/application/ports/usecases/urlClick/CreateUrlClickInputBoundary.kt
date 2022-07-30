@@ -1,4 +1,4 @@
-package com.liverday.shortly.application.ports.usecases.url
+package com.liverday.shortly.application.ports.usecases.urlClick
 
 import com.liverday.shortly.domain.urlClick.UrlClick
 import reactor.core.publisher.Mono

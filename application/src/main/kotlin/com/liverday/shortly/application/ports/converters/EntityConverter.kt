@@ -1,6 +1,8 @@
 package com.liverday.shortly.application.ports.converters
 
-interface EntityConverter<I, O> {
+import com.liverday.shortly.domain.AggregateRoot
+
+interface EntityConverter<I : AggregateRoot<*>, O> {
     fun convertToDomain(entity: O): I
     fun convertToEntity(domain: I): O
 }

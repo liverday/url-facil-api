@@ -3,7 +3,7 @@ package com.liverday.shortly.domain.user
 import com.liverday.shortly.domain.Identifier
 import java.util.*
 
-class UserID private constructor(private val value: String) : com.liverday.shortly.domain.Identifier()  {
+class UserID private constructor(private val value: String) : Identifier()  {
     init {
         Objects.requireNonNull(value)
     }

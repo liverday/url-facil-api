@@ -14,7 +14,7 @@ class CreateUrl(
         private val createUrlTokenInputBoundary: CreateUrlTokenInputBoundary,
         private val urlFactory: UrlFactory
 ) : CreateUrlInputBoundary {
-    override fun execute(input: CreateUrlRequest): Mono<com.liverday.shortly.domain.url.Url> {
+    override fun execute(input: CreateUrlRequest): Mono<Url> {
         return Mono.fromCallable {
             val either = urlFactory.create(input)
 
@@ -38,7 +38,7 @@ class CreateUrl(
             urlGateway.existsByToken(url.token)
                     .map { exists ->
                         if (exists) {
-                            throw com.liverday.shortly.domain.exceptions.EntityAlreadyExistsException.with("The URL token sent already exists")
+                            throw EntityAlreadyExistsException.with("The URL token sent already exists")
                         }
                     }
                     .map {

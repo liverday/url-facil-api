@@ -36,7 +36,7 @@ class MongoUrlConverterTest {
     }
 
     @Test
-    fun givenADomain_shouldBeAbleToConvertToEntity(@Random url: com.liverday.shortly.domain.url.Url) {
+    fun givenADomain_shouldBeAbleToConvertToEntity(@Random url: Url) {
         val entityUrl = mongoUrlConverter.convertToEntity(url)
 
         Assertions.assertEquals(entityUrl.id, url.id.getValue())

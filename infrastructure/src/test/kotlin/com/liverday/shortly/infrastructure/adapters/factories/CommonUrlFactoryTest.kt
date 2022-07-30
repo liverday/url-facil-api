@@ -57,6 +57,6 @@ class CommonUrlFactoryTest {
 
         // then
         Assertions.assertTrue(either.isLeft())
-        Assertions.assertEquals(either.getLeft()::class.java, com.liverday.shortly.domain.exceptions.DomainCreationException::class.java)
+        Assertions.assertEquals(either.getLeft()::class.java, DomainCreationException::class.java)
     }
 }

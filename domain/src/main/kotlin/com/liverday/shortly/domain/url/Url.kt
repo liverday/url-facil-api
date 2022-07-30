@@ -6,23 +6,23 @@ import com.liverday.shortly.domain.user.UserID
 import java.time.LocalDateTime
 
 data class Url(
-        val id: com.liverday.shortly.domain.url.UrlID,
+        val id: UrlID,
         val link: String?,
         var token: String? = null,
         val createdAt: LocalDateTime = LocalDateTime.now(),
         var updatedAt: LocalDateTime = LocalDateTime.now(),
         val userId: UserID? = null
-) : com.liverday.shortly.domain.AggregateRoot<com.liverday.shortly.domain.url.UrlID>(id) {
+) : com.liverday.shortly.domain.AggregateRoot<UrlID>(id) {
     companion object {
-        fun newUrl(link: String?, token: String?): com.liverday.shortly.domain.url.Url {
-            return com.liverday.shortly.domain.url.Url(id = com.liverday.shortly.domain.url.UrlID.Companion.unique(), link, token)
+        fun newUrl(link: String?, token: String?): Url {
+            return Url(id = UrlID.unique(), link, token)
         }
     }
 
-    override fun validate(): List<com.liverday.shortly.domain.exceptions.Error> {
-        val errors = mutableListOf<com.liverday.shortly.domain.exceptions.Error>()
+    override fun validate(): List<Error> {
+        val errors = mutableListOf<Error>()
         if (link == null)
-            errors.add(com.liverday.shortly.domain.exceptions.Error("The link is required"))
+            errors.add(Error("The link is required"))
 
         return errors
     }

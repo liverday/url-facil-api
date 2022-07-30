@@ -32,7 +32,7 @@ class FetchUrlByTokenEndpoint(
                         ResponseEntity
                                 .status(HttpStatus.MOVED_PERMANENTLY)
                                 .header("Cache-Control", "no-cache, no-store")
-                                .location(URI.create(url.link))
+                                .location(URI.create(url.link!!))
                                 .build<String>()
                     }
         }

@@ -22,7 +22,7 @@ import java.time.Duration
     ExtendWith(MockitoExtension::class),
     ExtendWith(RandomBeansExtension::class)
 ])
-class MongoDatabaseGatewayTest {
+class MongoUrlDatabaseGatewayTest {
 
     @Mock
     lateinit var mongoUrlRepository: MongoUrlRepository
@@ -34,7 +34,7 @@ class MongoDatabaseGatewayTest {
     lateinit var mongoUrlDatabaseGateway: MongoUrlDatabaseGateway
 
     @Test
-    fun givenADomain_ShouldBeAbleToSaveAndReturnAnEntity(@Random url: com.liverday.shortly.domain.url.Url, @Random mongoUrlData: MongoUrlData) {
+    fun givenADomain_ShouldBeAbleToSaveAndReturnAnEntity(@Random url: Url, @Random mongoUrlData: MongoUrlData) {
         `when`(mongoUrlConverter.convertToEntity(url)).thenReturn(mongoUrlData)
         `when`(mongoUrlRepository.save(mongoUrlData)).thenReturn(Mono.just(mongoUrlData))
         `when`(mongoUrlConverter.convertToDomain(mongoUrlData)).thenReturn(url)
@@ -49,7 +49,7 @@ class MongoDatabaseGatewayTest {
     }
 
     @Test
-    fun givenAnValidId_ShouldBeAbleToFindUrl(@Random id: String, @Random url: com.liverday.shortly.domain.url.Url, @Random mongoUrlData: MongoUrlData) {
+    fun givenAnValidId_ShouldBeAbleToFindUrl(@Random id: String, @Random url: Url, @Random mongoUrlData: MongoUrlData) {
         `when`(mongoUrlConverter.convertToDomain(mongoUrlData)).thenReturn(url)
         `when`(mongoUrlRepository.findById(id)).thenReturn(Mono.just(mongoUrlData))
 
@@ -103,9 +103,9 @@ class MongoDatabaseGatewayTest {
             @Random mongoUrlDataTwo: MongoUrlData,
             @Random mongoUrlDataThree: MongoUrlData,
 
-            @Random urlOne: com.liverday.shortly.domain.url.Url,
-            @Random urlTwo: com.liverday.shortly.domain.url.Url,
-            @Random urlThree: com.liverday.shortly.domain.url.Url,
+            @Random urlOne: Url,
+            @Random urlTwo: Url,
+            @Random urlThree: Url,
     ) {
         `when`(mongoUrlConverter.convertToDomain(mongoUrlDataOne)).thenReturn(urlOne)
         `when`(mongoUrlConverter.convertToDomain(mongoUrlDataTwo)).thenReturn(urlTwo)

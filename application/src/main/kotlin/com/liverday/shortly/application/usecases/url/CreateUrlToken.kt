@@ -9,7 +9,7 @@ import kotlin.random.Random
 class CreateUrlToken(
         private val urlGateway: UrlDatabaseGateway
 ) : CreateUrlTokenInputBoundary {
-
+    private val tokenLength = 6
     private val upperCaseSymbols = (65..90) //ASCII Range
             .map { it.toChar() }
             .toCharArray()
@@ -18,7 +18,7 @@ class CreateUrlToken(
             .map { it.toChar() }
             .toCharArray()
 
-    private fun generateToken(length: Int): Mono<String> {
+    private fun generateToken(length: Int = tokenLength): Mono<String> {
         val symbols = upperCaseSymbols + lowerCaseSymbols
         return Flux
                 .just(*(0..length).toList().toTypedArray())
@@ -33,7 +33,7 @@ class CreateUrlToken(
     }
 
     override fun execute(): Mono<String> {
-        return generateToken(6)
+        return generateToken()
                 .flatMap { token ->
                     urlGateway.existsByToken(token)
                         .flatMap { exists ->

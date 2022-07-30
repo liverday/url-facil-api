@@ -5,9 +5,9 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 interface UrlDatabaseGateway {
-    fun save(url: com.liverday.shortly.domain.url.Url): Mono<com.liverday.shortly.domain.url.Url>
-    fun findById(id: String): Mono<com.liverday.shortly.domain.url.Url>
-    fun findUrlByToken(token: String): Mono<com.liverday.shortly.domain.url.Url>
+    fun save(url: Url): Mono<Url>
+    fun findById(id: String): Mono<Url>
+    fun findUrlByToken(token: String): Mono<Url>
     fun existsByToken(token: String?): Mono<Boolean>
-    fun findAll(): Flux<com.liverday.shortly.domain.url.Url>
+    fun findAll(): Flux<Url>
 }

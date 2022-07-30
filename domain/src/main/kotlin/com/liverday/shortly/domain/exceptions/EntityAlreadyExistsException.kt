@@ -6,8 +6,8 @@ class EntityAlreadyExistsException(
 ) : com.liverday.shortly.domain.exceptions.DomainException(message, errors) {
     companion object {
         private const val DEFAULT_MESSAGE = "The entity already exists with the sent arguments"
-        fun with(message: String = com.liverday.shortly.domain.exceptions.EntityAlreadyExistsException.Companion.DEFAULT_MESSAGE): com.liverday.shortly.domain.exceptions.EntityAlreadyExistsException {
-            return com.liverday.shortly.domain.exceptions.EntityAlreadyExistsException(message, emptyList())
+        fun with(message: String = DEFAULT_MESSAGE): EntityAlreadyExistsException {
+            return EntityAlreadyExistsException(message, emptyList())
         }
     }
 }

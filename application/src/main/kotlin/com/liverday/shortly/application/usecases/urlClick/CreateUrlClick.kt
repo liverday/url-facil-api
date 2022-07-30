@@ -1,11 +1,10 @@
-package com.liverday.shortly.application.usecases.url
+package com.liverday.shortly.application.usecases.urlClick
 
 import com.liverday.shortly.domain.urlClick.UrlClick
 import com.liverday.shortly.application.ports.database.url.UrlClicksDatabaseGateway
 import com.liverday.shortly.application.ports.factories.url.UrlClickFactory
-import com.liverday.shortly.application.ports.usecases.url.CreateUrlClickInputBoundary
-import com.liverday.shortly.application.ports.usecases.url.CreateUrlClickRequest
-import com.liverday.shortly.domain.logger.Logger
+import com.liverday.shortly.application.ports.usecases.urlClick.CreateUrlClickInputBoundary
+import com.liverday.shortly.application.ports.usecases.urlClick.CreateUrlClickRequest
 import reactor.core.publisher.Mono
 import reactor.core.publisher.Sinks
 import reactor.core.scheduler.Schedulers

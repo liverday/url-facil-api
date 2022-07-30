@@ -6,5 +6,5 @@ import com.liverday.shortly.domain.Either
 import com.liverday.shortly.domain.exceptions.DomainCreationException
 
 interface UrlFactory {
-    fun create(request: CreateUrlRequest): com.liverday.shortly.domain.Either<com.liverday.shortly.domain.exceptions.DomainCreationException, com.liverday.shortly.domain.url.Url>
+    fun create(request: CreateUrlRequest): Either<DomainCreationException, Url>
 }

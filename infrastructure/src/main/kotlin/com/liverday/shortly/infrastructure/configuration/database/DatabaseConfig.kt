@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration
 class DatabaseConfig {
 
     @Bean
-    fun urlConverter(): EntityConverter<com.liverday.shortly.domain.url.Url, MongoUrlData> {
+    fun urlConverter(): EntityConverter<Url, MongoUrlData> {
         return MongoUrlConverter()
     }
     @Bean

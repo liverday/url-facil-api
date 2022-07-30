@@ -12,12 +12,12 @@ class FetchUrlByToken(
         private val urlDatabaseGateway: UrlDatabaseGateway,
         private val urlPublisher: UrlPublisher
 ) : FetchUrlByTokenInputBoundary {
-    override fun execute(token: String, metadata: UrlPublishMetadata): Mono<com.liverday.shortly.domain.url.Url> {
+    override fun execute(token: String, metadata: UrlPublishMetadata): Mono<Url> {
         return urlDatabaseGateway
                 .findUrlByToken(token)
                 .flatMap {
                     urlPublisher.onUrlClicked(it, metadata)
                 }
-                .switchIfEmpty(Mono.error(com.liverday.shortly.domain.exceptions.NotFoundException.with(com.liverday.shortly.domain.url.Url::class.java, "token", token)))
+                .switchIfEmpty(Mono.error(NotFoundException.with(Url::class.java, "token", token)))
     }
 }

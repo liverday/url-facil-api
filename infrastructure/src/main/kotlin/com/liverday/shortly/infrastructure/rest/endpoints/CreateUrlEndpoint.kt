@@ -24,7 +24,7 @@ class CreateUrlEndpoint(
     fun execute(
             @Valid @RequestBody body: CreateUrlRequest,
             exchange: ServerWebExchange
-    ): Mono<EntityModel<com.liverday.shortly.domain.url.Url>> {
+    ): Mono<EntityModel<Url>> {
         val fetchUrlByTokenEndpoint = methodOn(FetchUrlByTokenEndpoint::class.java)
         return createUrlInputBoundary.execute(body)
                 .flatMap {

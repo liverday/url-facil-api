@@ -4,5 +4,5 @@ import com.liverday.shortly.domain.url.Url
 import reactor.core.publisher.Mono
 
 interface CreateUrlInputBoundary {
-    fun execute(input: CreateUrlRequest): Mono<com.liverday.shortly.domain.url.Url>
+    fun execute(input: CreateUrlRequest): Mono<Url>
 }

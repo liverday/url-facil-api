@@ -4,5 +4,5 @@ import com.liverday.shortly.domain.url.Url
 import reactor.core.publisher.Mono
 
 interface UrlPublisher {
-    fun onUrlClicked(url: com.liverday.shortly.domain.url.Url, metadata: UrlPublishMetadata): Mono<com.liverday.shortly.domain.url.Url>
+    fun onUrlClicked(url: Url, metadata: UrlPublishMetadata): Mono<Url>
 }

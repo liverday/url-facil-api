@@ -8,14 +8,14 @@ import com.liverday.shortly.domain.exceptions.DomainCreationException
 import com.liverday.shortly.domain.url.UrlID
 
 class CommonUrlFactory : UrlFactory {
-    override fun create(request: CreateUrlRequest): com.liverday.shortly.domain.Either<com.liverday.shortly.domain.exceptions.DomainCreationException, com.liverday.shortly.domain.url.Url> {
-        val url = com.liverday.shortly.domain.url.Url.newUrl(request.link, request.token)
+    override fun create(request: CreateUrlRequest): Either<DomainCreationException, Url> {
+        val url = Url.newUrl(request.link, request.token)
         val errors = url.validate()
 
         if (errors.isNotEmpty()) {
-            return com.liverday.shortly.domain.Either.Left(com.liverday.shortly.domain.exceptions.DomainCreationException.with(errors = errors))
+            return Either.Left(DomainCreationException.with(errors = errors))
         }
 
-        return com.liverday.shortly.domain.Either.Right(url)
+        return Either.Right(url)
     }
 }

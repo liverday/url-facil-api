@@ -7,18 +7,18 @@ import java.time.LocalDateTime
 
 data class UrlClick(
         var id: UrlClickID,
-        var urlId: com.liverday.shortly.domain.url.UrlID,
+        var urlId: UrlID,
         val platform: String = "",
         val device: String = "",
         val browser: String = "",
         val country: String? = null,
         val createdAt: LocalDateTime = LocalDateTime.now(),
         val updatedAt: LocalDateTime = LocalDateTime.now()
-) : com.liverday.shortly.domain.AggregateRoot<UrlClickID>(id) {
+) : AggregateRoot<UrlClickID>(id) {
 
     companion object {
         fun newUrlClick(
-                urlId: com.liverday.shortly.domain.url.UrlID,
+                urlId: UrlID,
                 platform: String,
                 device: String,
                 browser: String,
@@ -28,15 +28,15 @@ data class UrlClick(
         }
     }
 
-    override fun validate(): List<com.liverday.shortly.domain.exceptions.Error> {
-        val errors = mutableListOf<com.liverday.shortly.domain.exceptions.Error>()
+    override fun validate(): List<Error> {
+        val errors = mutableListOf<Error>()
 
         if (platform == "")
-            errors.add(com.liverday.shortly.domain.exceptions.Error("'platform' is required"))
+            errors.add(Error("'platform' is required"))
         if (device == "")
-            errors.add(com.liverday.shortly.domain.exceptions.Error("'device' is required"))
+            errors.add(Error("'device' is required"))
         if (browser == "")
-            errors.add(com.liverday.shortly.domain.exceptions.Error("'browser' is required"))
+            errors.add(Error("'browser' is required"))
 
         return errors
     }

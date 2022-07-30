@@ -1,9 +1,6 @@
 package com.liverday.shortly.infrastructure.adapters.factories
 
-import com.liverday.shortly.domain.url.Url
-import com.liverday.shortly.application.ports.usecases.url.CreateUrlClickRequest
-import com.liverday.shortly.domain.exceptions.DomainCreationException
-import com.liverday.shortly.domain.url.UrlID
+import com.liverday.shortly.application.ports.usecases.urlClick.CreateUrlClickRequest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

@@ -5,5 +5,5 @@ import com.liverday.shortly.application.ports.publishers.UrlPublishMetadata
 import reactor.core.publisher.Mono
 
 interface FetchUrlByTokenInputBoundary {
-    fun execute(token: String, metadata: UrlPublishMetadata): Mono<com.liverday.shortly.domain.url.Url>
+    fun execute(token: String, metadata: UrlPublishMetadata): Mono<Url>
 }

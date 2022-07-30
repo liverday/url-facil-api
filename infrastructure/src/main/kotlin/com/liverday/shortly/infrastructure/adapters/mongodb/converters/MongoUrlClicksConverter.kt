@@ -11,7 +11,7 @@ class MongoUrlClicksConverter : EntityConverter<UrlClick, MongoUrlClickData> {
     override fun convertToDomain(entity: MongoUrlClickData): UrlClick {
         return UrlClick(
                 UrlClickID.from(entity.id!!),
-                com.liverday.shortly.domain.url.UrlID.from(entity.urlId!!),
+                UrlID.from(entity.urlId!!),
                 entity.platform,
                 entity.device,
                 entity.browser,
