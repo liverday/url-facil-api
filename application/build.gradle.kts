@@ -5,7 +5,7 @@ plugins {
     kotlin("plugin.noarg") version "1.6.10"
 }
 
-group = "com.liverday.url-facil.application"
+group = "com.liverday.shortly.application"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -30,6 +30,7 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:${mockitoVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation("io.github.glytching:junit-extensions:2.5.0")
 }
 
 tasks.withType<KotlinCompile> {
